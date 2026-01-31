@@ -14,7 +14,7 @@
     alsa.support32Bit = true; # Поддержка 32-битных ALSA-приложений.
     pulse.enable = true;      # Предоставляет совместимость с PulseAudio.
 
-    # Раскомментируйте, если планируете использовать JACK-приложения.
-    # jack.enable = true;
+    # если планируете использовать JACK-приложения.
+    jack.enable = true;
   };
 }

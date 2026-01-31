@@ -6,7 +6,6 @@
 
   # Загрузчик.
   boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.timeout = 3;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Рекомендуется использовать LTS ядро для стабильности, 
@@ -30,7 +29,10 @@
   };
 
   # Разрешаем установку несвободных пакетов.
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowBroken = false;
+  };
 
   # Основные системные пакеты.
   environment.systemPackages = with pkgs; [
@@ -47,6 +49,7 @@
     unzip
     neofetch
     nodejs_24
+    ffmpeg-full
   ];
 
   # Укажите ваш часовой пояс.
