@@ -11,8 +11,13 @@
   networking.firewall = {
     enable = true;
     # Открываем порты для mDNS (обнаружение устройств в сети, например, принтеров).
-    allowedUDPPorts = [ 5353 ]; 
-    allowedTCPPorts = [ ];
+    allowedUDPPorts = [ 5353 ];
+    allowedUDPPortRanges = [
+      { from = 1714; to = 1764; }
+    ];
+    allowedTCPPortRanges = [
+     { from = 1714; to = 1764; }
+    ];
   };
 
   # Avahi (mDNS / IPP discovery) для автоматического обнаружения принтеров и других сервисов.
