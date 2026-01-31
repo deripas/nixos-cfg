@@ -3,7 +3,7 @@
 {
   imports =
     [
-      ./steam.nix
+      ./gaming.nix
       ./flatpak.nix
       ./zsh.nix
       ./browser.nix

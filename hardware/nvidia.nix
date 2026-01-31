@@ -19,22 +19,19 @@
     };
 
     # Настройки для ноутбуков с Intel.
-    intelBusId = "PCI:0@0:2:0"; # Уточните ваш BusID через `lspci | grep VGA`
-    nvidiaBusId = "PCI:2@0:0:0";
+    intelBusId = "PCI:0:2:0"; # Уточните ваш BusID через `lspci | grep VGA`
+    nvidiaBusId = "PCI:2:0:0";
   };
 
   # Опции для улучшения работы с Wayland.
   # Это включает поддержку DRM (Direct Rendering Manager)
   # что критично для Wayland сессий.
   hardware.nvidia.modesetting.enable = true;
-  
-  # Добавляем параметр ядра для включения DRM/KMS.
-  # Это помогает избежать "черного экрана" при старте Wayland сессии.
-  boot.kernelParams = [ "nvidia-drm.modeset=1" ];
 
   # Дополнительные пакеты, которые могут быть полезны.
   environment.systemPackages = with pkgs; [
     mesa-demos
     vulkan-tools
+    vulkan-validation-layers
   ];
 }

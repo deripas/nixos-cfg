@@ -6,5 +6,6 @@
     podman
     podman-desktop
     telegram-desktop
+    protonup-qt
   ];
 }

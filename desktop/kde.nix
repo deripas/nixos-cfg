@@ -7,8 +7,13 @@
   # Включаем SDDM (Display Manager) для входа в систему.
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
+
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = "anton";
+  };
   
-  # X-server все еще рекомендуется иметь включенным для совместимости.
+  # Xserver
   services.xserver.enable = true;
 
   # Настройки раскладки клавиатуры.
@@ -16,6 +21,8 @@
     layout = "us,ru";
     options = "grp:alt_shift_toggle";
   };
+
+  programs.dconf.enable = true;
 
   # Включаем порталы для интеграции приложений (Flatpak, Snap) с рабочим столом.
   # Это нужно для диалогов открытия/сохранения файлов, тем оформления и т.д.
@@ -35,6 +42,7 @@
     kate
     konsole
     filelight
+    partitionmanager
   ];
 
 }
