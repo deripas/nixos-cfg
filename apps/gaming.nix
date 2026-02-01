@@ -10,7 +10,6 @@
     gamescope
     wine
     winetricks
-    protontricks
     lutris
   ];
 

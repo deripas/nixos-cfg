@@ -1,12 +1,13 @@
 { config, pkgs, ... }:
 
 {
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.graphics.enable = true;
+
   # Устанавливаем проприетарный драйвер Nvidia.
   # Используем `pkgs.linuxPackages.nvidiaPackages.stable` для стабильной версии.
   # Для самой последней версии можно использовать `pkgs.linuxPackages.nvidiaPackages.latest`.
-  hardware.graphics.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.latest;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   hardware.nvidia.open = false;
 
   # Настройки для PRIME (управление гибридной графикой Intel + Nvidia).

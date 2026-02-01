@@ -22,35 +22,6 @@
 
   boot.consoleLogLevel = 3;
 
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 14d";
-  };
-
-  # Разрешаем установку несвободных пакетов.
-  nixpkgs.config = {
-    allowUnfree = true;
-    allowBroken = false;
-  };
-
-  # Основные системные пакеты.
-  environment.systemPackages = with pkgs; [
-    git
-    mc
-    tree
-    jq
-    wget
-    curl
-    htop
-    btop
-    pciutils
-    usbutils
-    unzip
-    neofetch
-    nodejs_24
-    ffmpeg-full
-  ];
 
   # Укажите ваш часовой пояс.
   time.timeZone = "Europe/Belgrade";
@@ -69,13 +40,16 @@
     LC_TIME = "ru_RU.UTF-8";
   };
 
-  services.power-profiles-daemon.enable = true;
-  services.thermald.enable = true;
-
   nix.settings.auto-optimise-store = true;
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
 
 }

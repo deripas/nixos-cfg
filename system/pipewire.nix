@@ -3,7 +3,7 @@
 {
   # Отключаем старый звуковой сервер PulseAudio.
   services.pulseaudio.enable = false;
-  
+
   # RtKit необходим для предоставления прав реального времени звуковым серверам.
   security.rtkit.enable = true;
 

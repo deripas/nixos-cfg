@@ -10,7 +10,6 @@
       # модули
       ./system
       ./hardware
-      ./desktop
       ./apps
       ./users
     ];

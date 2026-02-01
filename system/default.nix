@@ -3,8 +3,12 @@
 {
   imports =
     [
-      ./base.nix
+      ./boot.nix
       ./network.nix
-      ./printing.nix
+      ./packages.nix
+      ./services.nix
+      ./pipewire.nix
+      ./fonts.nix
+      ./kde.nix
     ];
 }

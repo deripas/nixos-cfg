@@ -3,7 +3,7 @@
 {
   # Включаем KDE Plasma 6.
   services.desktopManager.plasma6.enable = true;
-  
+
   # Включаем SDDM (Display Manager) для входа в систему.
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
@@ -12,7 +12,7 @@
     enable = true;
     user = "anton";
   };
-  
+
   # Xserver
   services.xserver.enable = true;
 
@@ -30,19 +30,23 @@
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
-    extraPortals = [ 
+    extraPortals = [
       pkgs.kdePackages.xdg-desktop-portal-kde
       pkgs.xdg-desktop-portal-gtk
     ];
   };
-  
+
   # Для Wayland сессии рекомендуется включить.
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   environment.systemPackages = with pkgs.kdePackages; [
     phonon-vlc
     kate
+    kcalc
     konsole
+    kolourpaint
+    ksystemlog
+    ktorrent
     filelight
     partitionmanager
   ];
