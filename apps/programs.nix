@@ -1,8 +1,9 @@
 { config, pkgs, ... }:
 
 {
-  # Install firefox.
   programs.firefox.enable = true;
+
+  programs.virt-manager.enable = true;
 
   programs.obs-studio = {
     enable = true;
@@ -40,5 +41,16 @@
       dockerCompat = true;
       defaultNetwork.settings.dns_enabled = true;
     };
+
+#    virtualbox.host = {
+#      enable = true;
+#      enableExtensionPack = true;
+#    };
+
+    libvirtd.enable = true;
+
+    spiceUSBRedirection.enable = true;
   };
+
+
 }

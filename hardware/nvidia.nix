@@ -2,7 +2,14 @@
 
 {
   services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.graphics.enable = true;
+#   hardware.graphics.enable = true;
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      libva
+    ];
+  };
 
   # Устанавливаем проприетарный драйвер Nvidia.
   # Используем `pkgs.linuxPackages.nvidiaPackages.stable` для стабильной версии.
@@ -32,6 +39,7 @@
   # Дополнительные пакеты, которые могут быть полезны.
   environment.systemPackages = with pkgs; [
     mesa-demos
+    libva-utils
     vulkan-tools
     vulkan-validation-layers
   ];
