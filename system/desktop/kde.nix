@@ -1,25 +1,16 @@
 { config, pkgs, ... }:
 
 {
-  # Включаем KDE Plasma 6.
   services.desktopManager.plasma6.enable = true;
 
-  # Включаем SDDM (Display Manager) для входа в систему.
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
+  services.displayManager = {
+    sddm.enable = true;
+    sddm.wayland.enable = true;
 
-  services.displayManager.autoLogin = {
-    enable = true;
-    user = "anton";
-  };
-
-  # Xserver
-  services.xserver.enable = true;
-
-  # Настройки раскладки клавиатуры.
-  services.xserver.xkb = {
-    layout = "us,ru";
-    options = "grp:alt_shift_toggle";
+    autoLogin = {
+      enable = true;
+      user = "anton";
+    };
   };
 
   programs.dconf.enable = true;

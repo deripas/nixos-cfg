@@ -4,11 +4,10 @@
   imports =
     [
       ./boot.nix
+      ./locale.nix
       ./network.nix
-      ./packages.nix
       ./services.nix
-      ./pipewire.nix
-      ./fonts.nix
-      ./kde.nix
+      ./nix.nix
+      ./desktop
     ];
 }

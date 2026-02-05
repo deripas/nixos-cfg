@@ -3,7 +3,8 @@
 {
   imports =
     [
-      ./nvidia.nix
+      ./graphics.nix
       ./bluetooth.nix
+      ./power.nix
     ];
 }

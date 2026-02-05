@@ -7,12 +7,13 @@
     drivers = [ pkgs.gutenprint ];
   };
 
-  services.power-profiles-daemon.enable = true;
-
-  services.thermald.enable = true;
-
   # Включаем поддержку Flatpak.
   services.flatpak.enable = true;
 
-
+  # Avahi (mDNS / IPP discovery) для автоматического обнаружения принтеров и других сервисов.
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 }

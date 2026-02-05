@@ -35,9 +35,6 @@
     '';
   };
 
-
-  # Пакеты для улучшения работы с Zsh.
-  # Они будут доступны всем пользователям, у которых shell - zsh.
   environment.systemPackages = with pkgs; [
     zsh
     zsh-autosuggestions
@@ -46,7 +43,6 @@
     zsh-fzf-history-search
     zsh-fzf-tab
     zsh-powerlevel10k
-    meslo-lgs-nf
     fzf
   ];
 }
