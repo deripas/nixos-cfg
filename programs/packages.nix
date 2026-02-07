@@ -10,6 +10,8 @@
   # Основные системные пакеты.
   environment.systemPackages = with pkgs; [
     git
+    vim
+    neovim
     mc
     tree
     jq
