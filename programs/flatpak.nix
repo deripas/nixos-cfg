@@ -1,22 +1,18 @@
-{ pkgs, ... }:
+{ ... }:
 
-let
-  flatpak = "${pkgs.flatpak}/bin/flatpak";
+{
+  imports = [
+    (builtins.fetchTarball {
+      url = "https://github.com/gmodena/nix-flatpak/archive/v0.7.0.tar.gz";
+      sha256 = "sha256-7ZCulYUD9RmJIDULTRkGLSW1faMpDlPKcbWJLYHoXcs=";
+    } + "/modules/nixos.nix")
+  ];
 
-  systemApps = [
+  services.flatpak.enable = true;
+
+  services.flatpak.packages = [
     "com.github.Matoking.protontricks"
     "com.github.wwmm.easyeffects"
     "ru.yandex.Browser"
   ];
-in
-{
-  services.flatpak.enable = true;
-
-  system.activationScripts.flatpak = ''
-    ${flatpak} remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
-    for app in ${builtins.concatStringsSep " " systemApps}; do
-      ${flatpak} install -y --noninteractive flathub "$app"
-    done
-  '';
 }

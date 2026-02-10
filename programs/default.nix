@@ -8,5 +8,6 @@
       ./flatpak.nix
       ./gaming.nix
       ./zsh.nix
+      ./python.nix
     ];
 }

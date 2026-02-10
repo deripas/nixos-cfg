@@ -24,7 +24,7 @@
     unzip
     neofetch
     nodejs_24
-    ansible
+    go
     ffmpeg-full
   ];
 

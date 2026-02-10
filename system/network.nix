@@ -6,6 +6,7 @@
   networking.networkmanager.settings = {
     connectivity = {
       enabled = false;
+      uri = "";
     };
   };
 
