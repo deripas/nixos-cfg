@@ -1,17 +1,17 @@
 { config, pkgs, ... }:
 
 {
-  networking.enableIPv6 = false;
+#  networking.enableIPv6 = false;
 
   # Включаем NetworkManager для управления сетевыми подключениями.
   networking.networkmanager.enable = true;
-  networking.networkmanager.settings = {
-    connectivity = {
-      enabled = false;
-      uri = "";
-      interval = 0;
-    };
-  };
+#  networking.networkmanager.settings = {
+#    connectivity = {
+#      enabled = false;
+#      uri = "";
+#      interval = 0;
+#    };
+#  };
 
   # Настройки файрвола.
   networking.firewall = {
