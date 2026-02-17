@@ -5,6 +5,8 @@
 
    virtualisation = {
      libvirtd.enable = true;
+     libvirtd.qemu.vhostUserPackages = [ pkgs.virtiofsd ];
      spiceUSBRedirection.enable = true;
   };
+
 }
