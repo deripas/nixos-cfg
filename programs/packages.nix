@@ -26,6 +26,7 @@
     nodejs_24
     go
     ffmpeg-full
+    killall
   ];
 
 }
