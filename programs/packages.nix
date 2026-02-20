@@ -21,6 +21,7 @@
     btop
     pciutils
     usbutils
+    binutils
     unzip
     neofetch
     nodejs_24
