@@ -6,11 +6,6 @@
   services.displayManager = {
     sddm.enable = true;
     sddm.wayland.enable = true;
-
-    autoLogin = {
-      enable = true;
-      user = "anton";
-    };
   };
 
   programs.dconf.enable = true;
