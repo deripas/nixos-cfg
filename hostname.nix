@@ -16,6 +16,6 @@ in
     ];
 
   # Устанавливаем имя хоста в системе.
-  #networking.hostName = systemHostname;
+  networking.hostName = systemHostname;
 }
 
