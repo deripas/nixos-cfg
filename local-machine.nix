@@ -2,7 +2,7 @@
 
 let
   # Определяем имя хоста.
-  systemHostname = "korsar";
+  systemHostname = "kolobok";
 
   # Собираем путь к файлу конфигурации хоста.
   hostPath = ./hosts + "/${systemHostname}";
