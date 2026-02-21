@@ -9,7 +9,7 @@
       ./programs
       ./hardware
       ./users
-      ./local-machine.nix
+      ./hostname.nix
     ];
 
   # Версия системы.

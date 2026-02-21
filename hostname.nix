@@ -2,7 +2,8 @@
 
 let
   # Определяем имя хоста.
-  systemHostname = "kolobok";
+  hostname = builtins.readFile /etc/hostname;
+  systemHostname = builtins.replaceStrings ["\n"] [""] hostname;
 
   # Собираем путь к файлу конфигурации хоста.
   hostPath = ./hosts + "/${systemHostname}";
@@ -15,6 +16,6 @@ in
     ];
 
   # Устанавливаем имя хоста в системе.
-  networking.hostName = systemHostname;
+  #networking.hostName = systemHostname;
 }
 
