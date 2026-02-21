@@ -5,13 +5,15 @@
 
   # Включаем NetworkManager для управления сетевыми подключениями.
   networking.networkmanager.enable = true;
-#  networking.networkmanager.settings = {
-#    connectivity = {
-#      enabled = false;
-#      uri = "";
-#      interval = 0;
-#    };
-#  };
+  networking.networkmanager.settings = {
+    connectivity = {
+      enabled = false;
+    };
+
+    main = {
+      connectivity = "none";
+    };
+  };
 
   # Настройки файрвола.
   networking.firewall = {
