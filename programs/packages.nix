@@ -26,7 +26,7 @@
     neofetch
     nodejs_24
     go
-    ffmpeg-full
+    # ((pkgs.ffmpeg-full.override { withUnfree = true; }).overrideAttrs (_: { doCheck = false; }))
     killall
   ];
 

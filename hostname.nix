@@ -2,7 +2,7 @@
 
 let
   # Определяем имя хоста.
-  hostname = builtins.readFile /etc/hostname;
+  hostname = builtins.readFile /etc/nixos/hostname;
   systemHostname = builtins.replaceStrings ["\n"] [""] hostname;
 
   # Собираем путь к файлу конфигурации хоста.
