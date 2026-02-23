@@ -4,6 +4,7 @@
   hardware.graphics.extraPackages = with pkgs; [
     intel-media-driver
     libva
+    intel-gpu-tools
   ];
 
   # VAAPI для hardware acceleration видео

@@ -13,6 +13,7 @@
   services.flatpak.packages = [
     "com.github.Matoking.protontricks"
     "com.github.wwmm.easyeffects"
+    "com.github.tchx84.Flatseal"
     "ru.yandex.Browser"
   ];
 }
