@@ -9,6 +9,8 @@
 
   # Основные системные пакеты.
   environment.systemPackages = with pkgs; [
+    evtest
+    libinput
     git
     vim
     neovim
