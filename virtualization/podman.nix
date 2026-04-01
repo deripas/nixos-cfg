@@ -12,6 +12,9 @@
 
   environment.systemPackages = with pkgs; [
     distrobox
-    podman-desktop
   ];
+
+  environment.variables = {
+    DISTROBOX_EXPORT_PATH = "$(which distrobox-export)";
+  };
 }
