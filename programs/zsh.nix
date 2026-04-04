@@ -8,6 +8,7 @@
     shellAliases = {
       rebuild = "sudo nixos-rebuild switch";
       update = "sudo nix-channel --update";
+      upgrade = "sudo nixos-rebuild --upgrade boot";
       gemini = "npx @google/gemini-cli";
     };
 
