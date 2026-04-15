@@ -28,8 +28,8 @@
     neofetch
     nodejs_24
     go
-    # ((pkgs.ffmpeg-full.override { withUnfree = true; }).overrideAttrs (_: { doCheck = false; }))
     killall
+    vlc
   ];
 
 }

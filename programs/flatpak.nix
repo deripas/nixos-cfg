@@ -16,5 +16,7 @@
     "com.github.tchx84.Flatseal"
     "ru.yandex.Browser"
     "io.podman_desktop.PodmanDesktop"
+    "org.telegram.desktop"
+    "net.davidotek.pupgui2"
   ];
 }

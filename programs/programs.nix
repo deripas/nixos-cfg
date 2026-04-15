@@ -22,9 +22,4 @@
     ];
   };
 
-  environment.systemPackages = with pkgs; [
-    telegram-desktop
-    protonup-qt
-    vlc
-  ];
 }
