@@ -19,7 +19,7 @@
 
   environment.systemPackages = with pkgs; [
     # support both 32- and 64-bit applications
-    wineWowPackages.stable
+    wineWow64Packages.stable
 
     # wine-staging (version with experimental features)
     #wineWowPackages.staging

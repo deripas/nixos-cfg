@@ -25,7 +25,7 @@
     usbutils
     binutils
     unzip
-    neofetch
+    fastfetch
     nodejs_24
     go
     killall
