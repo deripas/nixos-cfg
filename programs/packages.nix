@@ -30,6 +30,10 @@
     go
     killall
     vlc
+    lnav
+    lazyjournal
+    ghostty
+    kitty
   ];
 
 }
