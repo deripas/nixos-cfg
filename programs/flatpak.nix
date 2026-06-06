@@ -18,5 +18,6 @@
     "io.podman_desktop.PodmanDesktop"
     "org.telegram.desktop"
     "net.davidotek.pupgui2"
+    "org.onlyoffice.desktopeditors"
   ];
 }
