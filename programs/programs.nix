@@ -3,6 +3,10 @@
 {
   programs.firefox.enable = true;
 
+  programs.atuin.enable = true;
+
+  programs.whois.enable = true;
+
   programs.obs-studio = {
     enable = true;
 
