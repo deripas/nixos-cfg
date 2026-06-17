@@ -2,11 +2,7 @@
 
 {
   services.desktopManager.plasma6.enable = true;
-
-  services.displayManager = {
-    sddm.enable = true;
-    sddm.wayland.enable = true;
-  };
+  services.displayManager.plasma-login-manager.enable = true;
 
   programs.dconf.enable = true;
   programs.kdeconnect.enable = true;
