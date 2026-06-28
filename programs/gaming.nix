@@ -4,8 +4,8 @@
   programs.steam = {
     enable = true;
 
-    remotePlay.openFirewall = false;
-    dedicatedServer.openFirewall = false;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
     localNetworkGameTransfers.openFirewall = true;
   };
 
@@ -18,25 +18,11 @@
   };
 
   environment.systemPackages = with pkgs; [
-    # support both 32- and 64-bit applications
-    wineWow64Packages.stable
-
-    # wine-staging (version with experimental features)
-    #wineWowPackages.staging
-
-    # native wayland support (unstable)
-    #wineWowPackages.waylandFull
-
     winetricks
     lutris
     mangohud
     zenity
     libadwaita
   ];
-
-#  environment.sessionVariables = {
-#    LUTRIS_RUNTIME = "0";
-#    PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION = "python";
-#  };
 
 }

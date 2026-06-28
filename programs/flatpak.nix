@@ -10,6 +10,16 @@
 
   services.flatpak.enable = true;
 
+  services.flatpak.overrides.global = {
+    Context = {
+      filesystems = [
+        "/nix/store:ro"
+        "~/.local/share/fonts:ro"
+        "/run/current-system/sw/share/X11/fonts:ro"
+      ];
+    };
+  };
+
   services.flatpak.packages = [
     "com.github.Matoking.protontricks"
     "com.github.wwmm.easyeffects"
