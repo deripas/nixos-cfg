@@ -17,6 +17,7 @@
     mc
     tree
     jq
+    yq-go
     wget
     curl
     htop
