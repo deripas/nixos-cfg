@@ -3,7 +3,11 @@
 {
   imports =
     [
-      ../korsar/gpu-intel.nix
-      ./users
+      ../../core
+      ./boot.nix
+      ./hardware.nix
+      ./services.nix
+      ./users.nix
+      ./networking.nix
     ];
 }

@@ -3,9 +3,11 @@
 {
   imports =
     [
-      ./gpu-intel.nix
-      ./gpu-nvidia.nix
-      ./network.nix
-      ./auto-login.nix
+      ../../core
+      ./boot.nix
+      ./hardware.nix
+      ./services.nix
+      ./users.nix
+      ./networking.nix
     ];
 }
