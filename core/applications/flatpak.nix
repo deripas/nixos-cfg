@@ -29,5 +29,6 @@
     "org.telegram.desktop"
     "net.davidotek.pupgui2"
     "org.onlyoffice.desktopeditors"
+    "com.xnview.XnViewMP"
   ];
 }
