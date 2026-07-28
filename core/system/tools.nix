@@ -21,7 +21,7 @@
     killall
     lnav
     lazyjournal
-    kitty
+    smartmontools
   ];
 
 }
