@@ -10,4 +10,6 @@
     initrd.verbose = false;
     consoleLogLevel = 3;
   };
+
+  boot.swraid.enable = true;
 }
