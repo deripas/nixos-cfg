@@ -1,16 +1,41 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
+  systemd.tmpfiles.rules = [
+    "d /home/srv 0755 root root -"
+    "d /home/srv/postgresql 0700 postgres postgres -"
+  ];
+
+  systemd.services.postgresql.serviceConfig = {
+    after = [ "systemd-tmpfiles-setup.service" ];
+
+    ProtectHome = lib.mkForce false;
+    ReadWritePaths = [ "/home/srv/postgresql" ];
+  };
+
   services.postgresql = {
     enable = true;
-    port = 5432;
-
+    settings.port = 5432;
+    
     package = pkgs.postgresql_18;
-    dataDir = "/home/services/postgresql";
+    dataDir = "/home/srv/postgresql";
 
     extensions = ps: with ps; [
       pgvector
       vectorchord
     ];
+
+    ensureDatabases = [
+      "immich"
+    ];
+
+    ensureUsers = [
+      {
+        name = "immich";
+        ensureDBOwnership = true;
+      }
+    ];
+
   };
+
 }
