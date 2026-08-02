@@ -4,7 +4,7 @@
   # 1. Создаем папку для медиафайлов до старта сервиса
   systemd.tmpfiles.rules = [
     "d /home/srv 0755 root root -"
-    "d /home/services/immich 0750 immich immich -"
+    "d /home/srv/immich 0750 immich immich -"
   ];
 
   # 2. Разрешаем доступ к /home в systemd для Immich
@@ -12,7 +12,7 @@
     after = [ "systemd-tmpfiles-setup.service" ];
 
     ProtectHome = lib.mkForce false;
-    ReadWritePaths = [ "/home/services/immich" ];
+    ReadWritePaths = [ "/home/srv/immich" ];
   };
 
   # 3. Конфигурация Immich
@@ -20,7 +20,7 @@
     enable = true;
     port = 2283;
     host = "0.0.0.0";
-    mediaLocation = "/home/services/immich";
+    mediaLocation = "/home/srv/immich";
     openFirewall = true;
 
     # Redis поднимается и конфигурируется автоматически NixOS:

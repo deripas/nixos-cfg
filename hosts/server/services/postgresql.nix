@@ -15,7 +15,10 @@
 
   services.postgresql = {
     enable = true;
-    settings.port = 5432;
+    settings = {
+      port = 5432;
+      shared_preload_libraries = [ "vchord" ];
+    };
     
     package = pkgs.postgresql_18;
     dataDir = "/home/srv/postgresql";
