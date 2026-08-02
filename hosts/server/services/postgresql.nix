@@ -36,6 +36,12 @@
       }
     ];
 
+    # Разрешаем пользователю "immich" подключаться к БД "immich" через сокет:
+    authentication = pkgs.lib.mkOverride 10 ''
+      # type  database  user    address       auth-method
+      local   immich    immich                trust
+      local   all       postgres              trust
+    '';
   };
 
 }
