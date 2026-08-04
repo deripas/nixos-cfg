@@ -1,5 +1,10 @@
 { config, pkgs, lib, ... }:
 
+let
+  unstable = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") {
+      config = config.nixpkgs.config;
+  };
+in
 {
   # 1. Создаем папку для медиафайлов до старта сервиса
   systemd.tmpfiles.rules = [
@@ -8,16 +13,22 @@
   ];
 
   # 2. Разрешаем доступ к /home в systemd для Immich
-  systemd.services.immich-server.serviceConfig = {
+  systemd.services.immich-server = {
+    # Указываем systemd выполнить tmpfiles ДО проверки монтирований и ReadWritePaths
+    wants = [ "systemd-tmpfiles-setup.service" ];
     after = [ "systemd-tmpfiles-setup.service" ];
 
-    ProtectHome = lib.mkForce false;
-    ReadWritePaths = [ "/home/srv/immich" ];
+    serviceConfig = {
+      ProtectHome = lib.mkForce false;
+      ReadWritePaths = [ "/home/srv/immich" ];
+    };
   };
 
   # 3. Конфигурация Immich
   services.immich = {
     enable = true;
+    package = unstable.immich;
+
     port = 2283;
     host = "0.0.0.0";
     mediaLocation = "/home/srv/immich";

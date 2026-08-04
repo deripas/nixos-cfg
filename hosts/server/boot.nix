@@ -12,4 +12,16 @@
   };
 
   boot.swraid.enable = true;
+  boot.swraid.mdadmConf = ''
+    MAILADDR deripas@yandex.ru
+  '';
+
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 10;
+  };
+
+  swapDevices = [{
+      device = "/swapfile";
+      size = 16 * 1024; # 16384 MB = 16 GB
+  }];
 }

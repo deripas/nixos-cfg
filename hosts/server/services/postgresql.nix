@@ -6,11 +6,15 @@
     "d /home/srv/postgresql 0700 postgres postgres -"
   ];
 
-  systemd.services.postgresql.serviceConfig = {
+  systemd.services.postgresql = {
+    # Указываем systemd выполнить tmpfiles ДО проверки монтирований и ReadWritePaths
+    wants = [ "systemd-tmpfiles-setup.service" ];
     after = [ "systemd-tmpfiles-setup.service" ];
 
-    ProtectHome = lib.mkForce false;
-    ReadWritePaths = [ "/home/srv/postgresql" ];
+    serviceConfig = {
+      ProtectHome = lib.mkForce false;
+      ReadWritePaths = [ "/home/srv/postgresql" ];
+    };
   };
 
   services.postgresql = {
