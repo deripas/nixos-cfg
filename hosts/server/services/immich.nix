@@ -18,6 +18,10 @@ in
     wants = [ "systemd-tmpfiles-setup.service" ];
     after = [ "systemd-tmpfiles-setup.service" ];
 
+    path = lib.mkBefore [
+      pkgs.postgresql_18
+    ];
+
     serviceConfig = {
       ProtectHome = lib.mkForce false;
       ReadWritePaths = [ "/home/srv/immich" ];
