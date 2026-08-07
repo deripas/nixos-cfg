@@ -55,4 +55,8 @@ in
       port = 5432;
     };
   };
+
+  environment.systemPackages = [
+    unstable.immich-go
+  ];
 }
