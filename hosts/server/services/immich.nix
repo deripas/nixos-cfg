@@ -25,6 +25,12 @@ in
     serviceConfig = {
       ProtectHome = lib.mkForce false;
       ReadWritePaths = [ "/home/srv/immich" ];
+      # мягкий потолок памяти.
+      # При превышении ядро давит на процесс через reclaim и swap,
+      MemoryAccounting = true;
+      MemoryHigh = "8G";
+      # Жёсткий предохранитель. Убивает процесс, но локально и предсказуемо.
+      MemoryMax = "12G";
     };
   };
 

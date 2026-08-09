@@ -14,6 +14,8 @@
     serviceConfig = {
       ProtectHome = lib.mkForce false;
       ReadWritePaths = [ "/home/srv/postgresql" ];
+
+      OOMScoreAdjust = -500;
     };
   };
 
@@ -22,6 +24,11 @@
     settings = {
       port = 5432;
       shared_preload_libraries = [ "vchord" ];
+
+      shared_buffers = "2GB";
+      effective_cache_size = "8GB";
+      work_mem = "32MB";
+      maintenance_work_mem = "512MB";
     };
     
     package = pkgs.postgresql_18;
