@@ -4,8 +4,17 @@ let
   unstable = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") {
       config = config.nixpkgs.config;
   };
+  # Создаем обертку над ffmpeg
+  ffmpeg-strict = pkgs.writeShellScriptBin "ffmpeg" ''
+    exec ${pkgs.ffmpeg}/bin/ffmpeg -strict -1 "$@"
+  '';
 in
 {
+
+  users.users.immich = {
+    extraGroups = [ "video" "render" ];
+  };
+
   # 1. Создаем папку для медиафайлов до старта сервиса
   systemd.tmpfiles.rules = [
     "d /home/srv 0755 root root -"
@@ -19,11 +28,14 @@ in
     after = [ "systemd-tmpfiles-setup.service" ];
 
     path = lib.mkBefore [
+      ffmpeg-strict
       pkgs.postgresql_18
     ];
 
     serviceConfig = {
       ProtectHome = lib.mkForce false;
+      PrivateDevices = lib.mkForce false;
+
       ReadWritePaths = [ "/home/srv/immich" ];
       # мягкий потолок памяти.
       # При превышении ядро давит на процесс через reclaim и swap,
@@ -31,6 +43,10 @@ in
       MemoryHigh = "8G";
       # Жёсткий предохранитель. Убивает процесс, но локально и предсказуемо.
       MemoryMax = "12G";
+
+      DeviceAllow = [ "/dev/dri/renderD128" "/dev/dri/card1" ];
+      # При необходимости даем доступ к файлам устройств
+      SupplementaryGroups = [ "video" "render" ];
     };
   };
 
