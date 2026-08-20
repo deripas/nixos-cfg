@@ -78,7 +78,53 @@ in
     };
   };
 
+  # 4. Разрешаем home для Restic
+  systemd.services.restic-backups-b2-immich = {
+    serviceConfig = {
+      ProtectHome = lib.mkForce false;
+      ReadWritePaths = [ 
+        "/home/srv/immich"
+        "/home/srv/restic"  
+      ];
+    };
+  };
+
+  # 5. Настройка Restic
+  services.restic.backups.b2-immich = {
+    # Инициализировать репозиторий, если он еще не существует
+    initialize = true;
+
+    # Автоматический запуск (после дампа Postgres)
+    timerConfig = {
+      OnCalendar = "*-*-* 02:00:00";
+      Persistent = true;
+    };
+
+    # Подключение к Backblaze B2 через S3 API
+    repository = "s3:s3.eu-central-003.backblazeb2.com/deripas-immich-backup";
+    environmentFile = "/home/srv/restic/immich-b2-env";
+
+    # Что бэкапим:
+    paths = [
+      "/home/srv/immich"
+    ];
+
+    # Исключаем временные и легко регенерируемые файлы (превью, закодированные видео)
+    exclude = [
+      "/home/srv/immich/thumbs"
+      "/home/srv/immich/encoded-video"
+    ];
+
+    # Автоматическая очистка старых бэкапов
+    pruneOpts = [
+      "--keep-daily 7"
+      "--keep-weekly 4"
+      "--keep-monthly 6"
+    ];
+  };
+
   environment.systemPackages = [
     unstable.immich-go
+    pkgs.restic
   ];
 }
