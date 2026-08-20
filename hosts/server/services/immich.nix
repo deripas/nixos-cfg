@@ -18,6 +18,7 @@ in
   # 1. Создаем папку для медиафайлов до старта сервиса
   systemd.tmpfiles.rules = [
     "d /home/srv 0755 root root -"
+    "d /raid/backups/immich-restic 0755 root root -"
     "d /home/srv/immich 0750 immich immich -"
   ];
 
@@ -78,7 +79,7 @@ in
     };
   };
 
-  # 4. Разрешаем home для Restic
+  # 4. Разрешаем home для Restic (S3)
   systemd.services.restic-backups-b2-immich = {
     serviceConfig = {
       ProtectHome = lib.mkForce false;
@@ -89,7 +90,7 @@ in
     };
   };
 
-  # 5. Настройка Restic
+  # 5. Настройка Restic (S3)
   services.restic.backups.b2-immich = {
     # Инициализировать репозиторий, если он еще не существует
     initialize = true;
@@ -123,6 +124,58 @@ in
     ];
   };
 
+  # 6. Разрешаем home для Restic (local)
+  systemd.services.restic-backups-local-immich = {
+    # Указываем systemd выполнить tmpfiles ДО проверки монтирований и ReadWritePaths
+    wants = [ "systemd-tmpfiles-setup.service" ];
+    after = [ "systemd-tmpfiles-setup.service" "raid.mount" ];
+
+    serviceConfig = {
+      ProtectHome = lib.mkForce false;
+      ReadWritePaths = [ 
+        "/home/srv/immich"
+        "/home/srv/restic"
+        "/raid/backups/immich-restic"
+      ];
+    };
+  };
+
+  # 7. Настройка Restic (local)
+  services.restic.backups.local-immich = {
+    # Инициализировать репозиторий, если он еще не существует
+    initialize = true;
+
+    # Автоматический запуск (после дампа Postgres)
+    timerConfig = {
+      OnCalendar = "*-*-* 01:00:00";
+      Persistent = true;
+    };
+
+    # Путь к локальному репозиторию на HDD
+    repository = "/raid/backups/immich-restic";
+    environmentFile = "/home/srv/restic/immich-local-env";
+
+    # Что бэкапим:
+    paths = [
+      "/home/srv/immich"
+    ];
+
+    # Исключаем временные и легко регенерируемые файлы (превью, закодированные видео)
+    exclude = [
+      "/home/srv/immich/thumbs"
+      "/home/srv/immich/encoded-video"
+    ];
+
+    # Автоматическая очистка старых бэкапов
+    pruneOpts = [
+      "--keep-daily 7"
+      "--keep-weekly 4"
+      "--keep-monthly 12"
+    ];
+  };
+
+
+  # нужные пакеты
   environment.systemPackages = [
     unstable.immich-go
     pkgs.restic
