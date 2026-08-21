@@ -105,6 +105,11 @@ in
     repository = "s3:s3.eu-central-003.backblazeb2.com/deripas-immich-backup";
     environmentFile = "/home/srv/restic/immich-b2-env";
 
+    # Флаг для совместимости с S3 API Backblaze B2
+    extraBackupArgs = [
+      "-o" "s3.storage-class="
+    ];
+
     # Что бэкапим:
     paths = [
       "/home/srv/immich"
