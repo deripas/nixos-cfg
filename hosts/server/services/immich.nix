@@ -179,5 +179,17 @@ in
   environment.systemPackages = [
     unstable.immich-go
     pkgs.restic
+    (pkgs.writeShellScriptBin "restic-local" ''
+      set -a
+      source /home/srv/restic/immich-local-env
+      set +a
+      exec ${pkgs.restic}/bin/restic -r /raid/backups/immich-restic "$@"
+    '')
+    (pkgs.writeShellScriptBin "restic-b2" ''
+      set -a
+      source /home/srv/restic/immich-b2-env
+      set +a
+      exec ${pkgs.restic}/bin/restic -r s3:s3.eu-central-003.backblazeb2.com/deripas-immich-backup "$@"
+    '')
   ];
 }
