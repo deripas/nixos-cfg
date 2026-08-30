@@ -9,5 +9,6 @@
       ./services.nix
       ./users.nix
       ./networking.nix
+      ./pkgs.nix
     ];
 }
