@@ -8,5 +8,6 @@
       ./sleep.nix
       ./postgresql.nix
       ./immich.nix
+      ./tunnel.nix
     ];
 }
