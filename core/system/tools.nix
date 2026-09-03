@@ -22,6 +22,7 @@
     lnav
     lazyjournal
     smartmontools
+    (ffmpeg-full.override { withUnfree = true; })
   ];
 
 }

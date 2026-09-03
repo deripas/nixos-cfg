@@ -22,6 +22,23 @@ in
     "d /home/srv/immich 0750 immich immich -"
   ];
 
+  systemd.services.immich-machine-learning = {
+    environment = {
+      # Перенаправляем домашнюю директорию из /var/empty в разрешенное место
+      HOME = "/var/lib/immich-machine-learning";
+    };
+    serviceConfig = {
+      # Создает директорию /var/lib/immich-machine-learning с правами на запись
+      StateDirectory = "immich-machine-learning";
+      WorkingDirectory = "/var/lib/immich-machine-learning";
+
+      # Даем доступ к домашней директории и отключаем сброс UID/GID
+      ProtectHome = lib.mkForce false;
+      PrivateUsers = lib.mkForce false;
+      PrivateTmp = true;
+    };
+  };
+
   # 2. Разрешаем доступ к /home в systemd для Immich
   systemd.services.immich-server = {
     # Указываем systemd выполнить tmpfiles ДО проверки монтирований и ReadWritePaths
@@ -36,6 +53,7 @@ in
     serviceConfig = {
       ProtectHome = lib.mkForce false;
       PrivateDevices = lib.mkForce false;
+      PrivateUsers = lib.mkForce false;
 
       ReadWritePaths = [ "/home/srv/immich" ];
       # мягкий потолок памяти.
@@ -183,6 +201,7 @@ in
   # нужные пакеты
   environment.systemPackages = [
     unstable.immich-go
+    unstable.immich-cli
     pkgs.restic
     (pkgs.writeShellScriptBin "restic-local" ''
       set -a
