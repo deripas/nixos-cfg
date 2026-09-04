@@ -114,10 +114,11 @@ in
     initialize = true;
 
     # Автоматический запуск (после дампа Postgres)
-    timerConfig = {
-      OnCalendar = "*-*-* 02:00:00";
-      Persistent = true;
-    };
+    timerConfig = null;
+    #timerConfig = {
+    #  OnCalendar = "*-*-* 02:00:00";
+    #  Persistent = true;
+    #};
 
     # Подключение к Backblaze B2 через S3 API
     repository = "s3:s3.eu-central-003.backblazeb2.com/deripas-immich-backup";

@@ -22,6 +22,7 @@
     lnav
     lazyjournal
     smartmontools
+    libheif
     (ffmpeg-full.override { withUnfree = true; })
   ];
 
