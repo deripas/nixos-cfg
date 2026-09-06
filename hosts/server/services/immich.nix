@@ -4,9 +4,11 @@ let
   unstable = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") {
       config = config.nixpkgs.config;
   };
-  # Создаем обертку над ffmpeg
+  ffmpegCustom = (pkgs.ffmpeg-full.override { 
+    withUnfree = true; 
+  });
   ffmpeg-strict = pkgs.writeShellScriptBin "ffmpeg" ''
-    exec ${pkgs.ffmpeg}/bin/ffmpeg -strict -1 "$@"
+    exec ${ffmpegCustom}/bin/ffmpeg -strict -1 "$@"
   '';
 in
 {

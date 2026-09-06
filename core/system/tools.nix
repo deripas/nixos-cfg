@@ -23,6 +23,7 @@
     lazyjournal
     smartmontools
     libheif
+    exiftool
     (ffmpeg-full.override { withUnfree = true; })
   ];
 
