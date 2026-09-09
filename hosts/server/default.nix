@@ -10,5 +10,6 @@
       ./networking.nix
       ./tools.nix
       ./services
+      ./virtualization
     ];
 }

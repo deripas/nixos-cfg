@@ -10,5 +10,6 @@
       ./users.nix
       ./networking.nix
       ./pkgs.nix
+      ./virtualization
     ];
 }

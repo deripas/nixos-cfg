@@ -18,12 +18,12 @@
     extraGroups = [
       "wheel"
       "networkmanager"
-      "podman"
       "libvirtd"
+      "docker"
     ];
 
     openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHhvgx4InwRr8sWtI5pkogCh/AJsS4fwBDOhftTYK7Re"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHhvgx4InwRr8sWtI5pkogCh/AJsS4fwBDOhftTYK7Re"
     ];
   };
 }
