@@ -9,5 +9,6 @@
       ./postgresql.nix
       ./immich.nix
       ./tunnel.nix
+      ./web.nix
     ];
 }

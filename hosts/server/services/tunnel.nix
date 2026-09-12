@@ -30,13 +30,6 @@
     ];
   };
 
-  services.caddy = {
-    enable = true;
-    virtualHosts."server.fantail-exponential.ts.net".extraConfig = ''
-      reverse_proxy 127.0.0.1:2283
-    '';
-  };
-
   networking.firewall = {
     trustedInterfaces = [ "tailscale0" ];
     allowedUDPPorts = [ config.services.tailscale.port ];
