@@ -64,4 +64,8 @@
       nvidiaBusId = "PCI:2:0:0";
     };
   };
+
+  # Load nvidia driver for Xorg and Wayland
+  services.xserver.videoDrivers = ["nvidia"];
+
 }
