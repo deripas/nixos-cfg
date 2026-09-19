@@ -2,9 +2,9 @@
 
 {
   environment.systemPackages = with pkgs; [
-    gcc
-    gnumake
-    cmake
+    yarn
+    nodejs
+    node-gyp
   ];
 
 }

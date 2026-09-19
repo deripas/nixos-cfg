@@ -4,6 +4,8 @@
   environment.systemPackages = with pkgs; [
     evtest
     libinput
+    libsecret
+    pkg-config
     git
     mc
     tree
