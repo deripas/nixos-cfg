@@ -44,6 +44,14 @@
                   <h2>pgAdmin</h2>
                   <p>Управление PostgreSQL</p>
                 </a>
+                <a href="/ai" class="card">
+                  <h2>AI</h2>
+                  <p>Ollama UI</p>
+                </a>
+                <a href="/rdp" class="card">
+                  <h2>Steaming</h2>
+                  <p>Sunshine</p>
+                </a>
               </div>
             </body>
             </html>
@@ -59,6 +67,15 @@
         handle /immich* {
           redir http://{host}:2283 302
         }
+
+        handle /rdp* {
+          redir https://{host}:47990 302
+        }
+
+        handle /ai* {
+          redir http://{host}:11000 302
+        }
+
       '';
     };
 
