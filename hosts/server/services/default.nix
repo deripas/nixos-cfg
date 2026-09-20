@@ -10,5 +10,7 @@
       ./immich.nix
       ./tunnel.nix
       ./web.nix
+      ./rdp.nix
+      ./ollama.nix
     ];
 }
