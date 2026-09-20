@@ -20,6 +20,7 @@
       "networkmanager"
       "libvirtd"
       "docker"
+      "uinput"
     ];
 
     openssh.authorizedKeys.keys = [
