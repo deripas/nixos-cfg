@@ -3,6 +3,7 @@
 {
   virtualisation.docker = {
     enable = true;
+    enableNvidia = true;
 
     # Автоматический запуск демона при загрузке системы
     enableOnBoot = true;
