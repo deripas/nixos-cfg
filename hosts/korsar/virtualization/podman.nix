@@ -4,9 +4,12 @@
   virtualisation = {
     containers = {
       enable = true;
-      registries.search = [
-        "docker.io"
-      ];
+      registries.settings = {
+        registry = [
+          { location = "docker.io"; }
+          { location = "quay.io"; }
+        ];
+      };
     };
     podman = {
       enable = true;
