@@ -6,6 +6,7 @@
     nano
     vim
     tree
+    broot
     git
     ripgrep
     adr-tools
