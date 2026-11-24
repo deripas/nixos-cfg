@@ -17,6 +17,10 @@
     golangci-lint
     k6
     uv
+    nodejs_26
+    pnpm
+    yarn
+    go_1_26
 
     # cloud / k8s
     (google-cloud-sdk.withExtraComponents [
@@ -26,5 +30,8 @@
     kubectx
     docker-client
     glab
+
+    qpdf
+    ghostscript
   ];
 }

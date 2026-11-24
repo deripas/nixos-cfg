@@ -3,7 +3,6 @@
 {
   imports =
     [
-      ../../core/development/go.nix
       ./nix.nix
       ./pkgs.nix
       ./fonts.nix
